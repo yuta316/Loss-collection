@@ -7,3 +7,10 @@ class PSPLoss(nn.Module):
         loss = F.cross_entropy(outputs[0], targets, reduction='mean')
         loss_aux = F.cross_entropy(outputs[1], targets, reduction='mean')
         return loss+loss_aux*aux_weight
+
+criterion = PSPLoss(aux_weight=0.4)
+
+"""
+セマンティックセグメンテーションはピクセルの他クラス分類なので
+クロスエントロピーを用いることができる.
+"""
